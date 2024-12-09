@@ -19,6 +19,6 @@ Use todos like a Kanban board.
 ### Dev phase:
 
 It is not ready yet but will be in the near future. With your help we can finish the project sooner.
-Current phase : parser
+Current phase : lexer
 
 #                THANKS!
