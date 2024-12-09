@@ -1,2 +1,2 @@
-install: lexer.cpp
-clang++ lexer.cpp -o cpps
+install: Lexer.cpp
+clang++ Lexer.cpp -o cpps
