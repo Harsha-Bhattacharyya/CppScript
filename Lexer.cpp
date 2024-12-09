@@ -27,7 +27,7 @@ vector<string> tokenize(const string& input) {
 
 int main() {
     string filename;
-    cout << "Enter the file name: "
+    cout << "Enter the file name: ";
     cin >> filename;
     ifstream file(filename);
 
