@@ -21,4 +21,9 @@ Use todos like a Kanban board.
 It is not ready yet but will be in the near future. With your help we can finish the project sooner.
 Current phase : lexer
 
+### Installation:
+
+Required: clang && make
+install command: <tt>make install</tt>
+
 #                THANKS!
