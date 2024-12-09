@@ -39,12 +39,21 @@ int main() {
                    istreambuf_iterator<char>());
 
     vector<string> tokens = tokenize(content);
+     //start the ofstream
+    string outputFilename = filename + ".tok"; 
 
-    cout << "Tokens: ";
-    for (const string& token : tokens) {
-        cout << token << " ";
+    ofstream outputFile(outputFilename);
+
+    if (!outputFile.is_open()) {
+        cerr << "Error: Could not create output file" << endl;
+        return 1;
     }
-    cout << endl;
+
+    for (const string& token : tokens) {
+        outputFile << token << endl;
+    }
+
+    cout << "Tokens written to " << outputFilename << endl;
 
     return 0;
 }
