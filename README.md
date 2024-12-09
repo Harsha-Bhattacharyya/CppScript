@@ -24,6 +24,7 @@ Current phase : lexer
 ### Installation:
 
 Required: clang && make
-install command: <tt>make install</tt>
+
+install command: <tt>make install && ./cpps</tt>
 
 #                THANKS!
