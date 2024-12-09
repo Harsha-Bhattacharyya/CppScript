@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cctype>
-
+#include <vector>
 using namespace std;
 
 vector<string> tokenize(const string& input) {
