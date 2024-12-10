@@ -27,6 +27,10 @@ vector<string> tokenize(const string& input) {
 
 int main() {
     string filename;
+    cout << "**CppScript Lexer prototype-version-1**";
+    cout << "**Licensed by the GNU gpl v3**";
+    cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**";
+    cout << '\n';
     cout << "Enter the file name: ";
     cin >> filename;
     ifstream file(filename);
