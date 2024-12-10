@@ -1,5 +1,6 @@
 #               CppScript
-<img src="logo.png" height="200">
+<img src="logo.png">
+
 Cppscript is a powerful, high-performance language designed to provide a C++-like experience, while seamlessly compiling into optimized JavaScript code.
 
 ### License:
