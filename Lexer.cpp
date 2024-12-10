@@ -33,7 +33,8 @@ int main() {
     cout << '\n';
     cout << "Enter the file name: ";
     cin >> filename;
-    ifstream file(filename);
+    if(filename.ends_with(".cpps")){
+        ifstream file(filename);
 
     if (!file.is_open()) {
         cerr << "Error: Could not open file " << filename << endl;
@@ -45,7 +46,7 @@ int main() {
 
     vector<string> tokens = tokenize(content);
      //start the ofstream
-    string outputFilename = filename + ".tok"; 
+    string outputFilename = filename - ".cpps" + ".tok"; 
 
     ofstream outputFile(outputFilename);
 
@@ -59,6 +60,10 @@ int main() {
     }
 
     cout << "Tokens written to " << outputFilename << endl;
+    }
+   else{
+       cout << "Wrong file name!"
+   }
 
     return 0;
 }
