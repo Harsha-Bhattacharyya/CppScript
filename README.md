@@ -1,6 +1,6 @@
 <h1 style="text-align: center;">CppScript</h1>
 
-<img src="https://github.com/Harsha-Bhattacharyya/CppScript/blob/Master/Logo.png"/>
+<img src="https://github.com/Harsha-Bhattacharyya/CppScript/blob/Master/logo.png"/>
 
 <img alt="License" src="https://img.shields.io/github/license/lunarvim/lunarvim?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
   
