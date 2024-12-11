@@ -1,23 +1,23 @@
-name: C/C++ CI
+name: Install Clang on Development Branch
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - development/Lexerprototypev2
 
 jobs:
-  build:
-
+  install-clang:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Clang
+        uses: llvm/llvm-project-actions/setup-llvm@v1
+        with:
+          llvm-version: 16.0.0  # Replace with your desired version
+
+      - name: Make Install
+        run: make install
+
