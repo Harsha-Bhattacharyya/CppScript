@@ -1,9 +1,9 @@
 
-Name: Build with Clang
+name: Build with Clang
 
 on:
   push:
-    branches: [main]
+    branches: development/Lexerprototypev2
 
 jobs:
   build:
