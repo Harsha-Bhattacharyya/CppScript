@@ -1,69 +1,137 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cctype>
 #include <vector>
-using namespace std;
+#include <cctype>
+#include <thread>
 
-vector<string> tokenize(const string& input) {
-    vector<string> tokens;
-    string currentToken;
+enum TokenType {
+    UNKNOWN, 
+    KEYWORD, 
+    IDENTIFIER, 
+    INTEGER_LITERAL, 
+    FLOAT_LITERAL, 
+    STRING_LITERAL, 
+    OPERATOR, 
+    PUNCTUATOR, 
+    WHITESPACE 
+};
+
+struct Token {
+    TokenType type;
+    std::string value;
+};
+
+// Set of keywords for easy lookup
+const char* keywords[] = {
+    "if", "else", "for", "while", "int", "float", "char", "void", "return", "nullptr" 
+};
+
+TokenType getTokenType(const std::string& token) {
+    for (const char* keyword : keywords) {
+        if (keyword && token == keyword) {
+            return KEYWORD;
+        }
+    }
+
+    if (isalpha(token[0]) || token[0] == '_') { 
+        return IDENTIFIER; 
+    } else if (isdigit(token[0])) { 
+        // Check for integers or floats
+        bool isFloat = false;
+        for (char c : token) {
+            if (c == '.') {
+                isFloat = true;
+                break;
+            }
+        }
+        return isFloat ? FLOAT_LITERAL : INTEGER_LITERAL;
+    } else if (token.size() == 1 && ispunct(token[0])) { 
+        return PUNCTUATOR; 
+    } else if (token == "+=" || token == "-=" || token == "*=" || token == "/=") {
+        return OPERATOR; 
+    } else if (token == "+" || token == "-" || token == "*" || token == "/" || 
+               token == "<" || token == ">" || token == "=" || token == "!" || 
+               token == "&" || token == "|" || token == "%") {
+        return OPERATOR; 
+    }
+    return UNKNOWN;
+}
+
+std::vector<Token> tokenize(const std::string& input) {
+    std::vector<Token> tokens;
+    std::string currentToken;
 
     for (char c : input) {
-        if (isalpha(c) || isdigit(c) || c == '_') {
+        if (isalnum(c) || c == '_' || c == '.') { // Allow '.' for floats
             currentToken += c;
         } else if (!isspace(c) && !currentToken.empty()) {
-            tokens.push_back(currentToken);
+            tokens.emplace_back(getTokenType(currentToken), currentToken); 
             currentToken.clear();
+        } else if (!isspace(c)) { 
+            tokens.emplace_back(getTokenType(std::string(1, c)), std::string(1, c));
         }
     }
 
     if (!currentToken.empty()) {
-        tokens.push_back(currentToken);
+        tokens.emplace_back(getTokenType(currentToken), currentToken);
     }
 
     return tokens;
 }
 
-int main() {
-    string filename;
-    cout << "**CppScript Lexer prototype-version-1**";
-    cout << "**Licensed by the GNU gpl v3**";
-    cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**";
-    cout << '\n';
-    cout << "Enter the file name: ";
-    cin >> filename;
-    if(filename.ends_with(".cpps")){
-        ifstream file(filename);
+std::vector<Token> tokenize_part(const std::string& input) {
+    return tokenize(input); 
+}
+
+int main(){
+    std::string filename;
+    std::cout << "enter the file name: ";
+    std::cin >> filename;
+   if(filename.ends_with(".cpps"){ std::ifstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error: Could not open file " << filename << endl;
+        std::cerr << "Error: Could not open file " << filename << std::endl;
         return 1;
     }
 
-    string content((istreambuf_iterator<char>(file)),
-                   istreambuf_iterator<char>());
+    std::string content((std::istreambuf_iterator<char>(file)),
+                        std::istreambuf_iterator<char>());
 
-    vector<string> tokens = tokenize(content);
-     //start the ofstream
-    string outputFilename = filename - ".cpps" + ".tok"; 
+    // Divide input into three parts (simplified)
+    size_t one_third = content.size() / 3;
+    std::string part1 = content.substr(0, one_third);
+    std::string part2 = content.substr(one_third, one_third);
+    std::string part3 = content.substr(one_third * 2); 
 
-    ofstream outputFile(outputFilename);
+    std::vector<std::thread> threads;
+    std::vector<std::vector<Token>> results; 
 
-    if (!outputFile.is_open()) {
-        cerr << "Error: Could not create output file" << endl;
-        return 1;
+    threads.emplace_back(tokenize_part, part1); 
+    threads.emplace_back(tokenize_part, part2); 
+    threads.emplace_back(tokenize_part, part3); 
+
+    for (auto& thread : threads) {
+        thread.join(); 
     }
 
-    for (const string& token : tokens) {
-        outputFile << token << endl;
+    std::vector<Token> all_tokens;
+    for (const auto& result : results) {
+        all_tokens.insert(all_tokens.end(), result.begin(), result.end()); 
     }
-
-    cout << "Tokens written to " << outputFilename << endl;
+std::ofstream output_file( filename + ".tok");
+if (output_file.is_open()) {
+    for (const Token& token : all_tokens) {
+        output_file << token.type << " " << token.value << std::endl;
     }
-   else{
-       cout << "Wrong file name!"
-   }
-
+    output_file.close();
+    std::cout << "Tokens written to tokens.tok" << std::endl;
+} else {
+    std::cerr << "Error: Could not open output file" << std::endl;
+}
+                                 }
+    else{
+        cout << "wrong extension";
+    }
     return 0;
 }
