@@ -85,7 +85,7 @@ std::vector<Token> tokenize_part(const std::string& input) {
 }
 
 int main(){
-    std::string filename;
+    
     std::cout << "enter the file name: ";
     std::cin >> filename;
    if(filename.ends_with(".cpps"){ std::ifstream file(filename);
@@ -119,13 +119,13 @@ int main(){
     for (const auto& result : results) {
         all_tokens.insert(all_tokens.end(), result.begin(), result.end()); 
     }
-std::ofstream output_file( filename + ".tok");
+std::ofstream output_file(filename - ".cpps" + ".tok");
 if (output_file.is_open()) {
     for (const Token& token : all_tokens) {
         output_file << token.type << " " << token.value << std::endl;
     }
     output_file.close();
-    std::cout << "Tokens written to tokens.tok" << std::endl;
+    std::cout << "Tokens written to file" << std::endl;
 } else {
     std::cerr << "Error: Could not open output file" << std::endl;
 }
