@@ -32,4 +32,6 @@ Required: clang && make
 
 install command: <tt>make install && ./cpps</tt>
 
+#### Discord:https://discord.gg/zCB83CKBce
+
 #                THANKS!
