@@ -77,9 +77,15 @@ std::vector<Token> tokenize(const std::string& input) {
 }
 
 int main() {
-    std::string filename = "your_file.txt";
+    std::string filename;
+    std::cout << "**CppScript Lexer prototype-version-2**";
+    std::cout << "**Licensed by the GNU gpl v3**";
+    std::cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**";
+    std::cout << '\n';
+    std::cout << "Enter the file name: ";
+    std::cin >> filename;
     std::ifstream file(filename);
-
+if(filename.ends_with(".cpps")){
     if (!file.is_open()) {
         std::cerr << "Error: Could not open file " << filename << std::endl;
         return 1;
@@ -97,11 +103,14 @@ int main() {
     }
 
     for (const Token& token : tokens) {
-        output_file << token.type << " " << token.value << std::endl;
+        output_file << "type:" << token.type << ", value: " << token.value << std::endl;
     }
 
     output_file.close();
     std::cout << "Tokens written to tokens.tok" << std::endl;
-
+}
+else{
+    std::cerr << "Error: Wrong extension";
+}
     return 0;
 }
