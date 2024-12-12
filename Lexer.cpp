@@ -6,7 +6,13 @@
 using namespace std;
 // Set of keywords for easy lookup
 std::unordered_set<std::string> keywords = {
-    "if", "else", "for", "while", "int", "float", "char", "void", "return", "include"
+"if", "else", "for", "while", "int", "float", 
+"string", "void", "return", "include", "auto", "const", 
+"case", "class", "private", "public", "default", 
+"break", "enum", "static", "sizeof", "do", "delete", 
+"try", "catch", "throw"
+
+
 };
 
 TokenType getTokenType(const std::string& token) {
