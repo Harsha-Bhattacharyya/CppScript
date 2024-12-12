@@ -59,9 +59,9 @@ std::vector<Token> tokenize(const std::string& input) {
 
 int main() {
     std::string filename;
-    std::cout << "**CppScript Lexer prototype-version-2**";
-    std::cout << "**Licensed by the GNU gpl v3**";
-    std::cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**";
+    std::cout << "**CppScript Lexer prototype-version-2**\n";
+    std::cout << "**Licensed by the GNU gpl v3**\n";
+    std::cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**\n";
     std::cout << '\n';
     std::cout << "Enter the file name: ";
     std::cin >> filename;
