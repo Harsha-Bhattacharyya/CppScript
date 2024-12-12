@@ -5,7 +5,7 @@
 #include "token/token.h"
 // Set of keywords for easy lookup
 std::unordered_set<std::string> keywords = {
-    "if", "else", "for", "while", "int", "float", "char", "void", "return"
+    "if", "else", "for", "while", "int", "float", "char", "void", "return", "include"
 };
 
 TokenType getTokenType(const std::string& token) {
