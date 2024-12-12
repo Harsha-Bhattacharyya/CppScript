@@ -3,6 +3,7 @@
 #include <cctype>
 #include <unordered_set>
 #include "token/token.h"
+using namespace std;
 // Set of keywords for easy lookup
 std::unordered_set<std::string> keywords = {
     "if", "else", "for", "while", "int", "float", "char", "void", "return", "include"
@@ -64,7 +65,7 @@ int main() {
     std::cout << "**GITHUB: https://github.com/Harsha-Bhattacharyya/CppScript**\n";
     std::cout << '\n';
     std::cout << "Enter the file name: ";
-    std::cin >> filename;
+    std::getline(cin, filename);
     std::ifstream file(filename);
 if(filename.ends_with(".cpps")){
     if (!file.is_open()) {
@@ -77,7 +78,7 @@ if(filename.ends_with(".cpps")){
 
     std::vector<Token> tokens = tokenize(content);
 
-    std::ofstream output_file("token/tokens.tok");
+    std::ofstream output_file("token/" + filename - ".cpps" + ".tok");
     if (!output_file.is_open()) {
         std::cerr << "Error: Could not open output file: " << strerror(errno) << std::endl;
         return 1;
