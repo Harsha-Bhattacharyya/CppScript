@@ -77,8 +77,12 @@ if(filename.ends_with(".cpps")){
                         std::istreambuf_iterator<char>());
 
     std::vector<Token> tokens = tokenize(content);
+    string ext = ".cpps";
+    size_t pos = filename.find(ext);
+    filename.erase(pos, ext.length());
+    string outfile = "token/" + filename + ".tok";
 
-    std::ofstream output_file("token/" + filename - ".cpps" + ".tok");
+    std::ofstream output_file(outfile);
     if (!output_file.is_open()) {
         std::cerr << "Error: Could not open output file: " << strerror(errno) << std::endl;
         return 1;
@@ -89,7 +93,7 @@ if(filename.ends_with(".cpps")){
     }
 
     output_file.close();
-    std::cout << "Tokens written to tokens.tok" << std::endl;
+    std::cout << "Tokens written to " << outfile << std::endl;
 }
 else{
     std::cerr << "Error: Wrong extension";
