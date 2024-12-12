@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cctype>
 #include <unordered_set>
-#include "token.h"
+#include "token/token.h"
 // Set of keywords for easy lookup
 std::unordered_set<std::string> keywords = {
     "if", "else", "for", "while", "int", "float", "char", "void", "return"
@@ -77,7 +77,7 @@ if(filename.ends_with(".cpps")){
 
     std::vector<Token> tokens = tokenize(content);
 
-    std::ofstream output_file("tokens.tok");
+    std::ofstream output_file("token/tokens.tok");
     if (!output_file.is_open()) {
         std::cerr << "Error: Could not open output file: " << strerror(errno) << std::endl;
         return 1;
