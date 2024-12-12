@@ -1,27 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
 #include <cctype>
 #include <unordered_set>
-
-enum TokenType {
-    UNKNOWN,
-    KEYWORD,
-    IDENTIFIER,
-    INTEGER_LITERAL,
-    FLOAT_LITERAL,
-    STRING_LITERAL,
-    OPERATOR,
-    PUNCTUATOR,
-    WHITESPACE
-};
-
-struct Token {
-    TokenType type;
-    std::string value;
-};
-
+#include "token.h"
 // Set of keywords for easy lookup
 std::unordered_set<std::string> keywords = {
     "if", "else", "for", "while", "int", "float", "char", "void", "return"
