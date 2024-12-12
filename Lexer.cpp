@@ -32,7 +32,12 @@ TokenType getTokenType(const std::string& token) {
                token == "<" || token == ">" || token == "=" || token == "!" ||
                token == "&" || token == "|" || token == "%") {
         return OPERATOR;
+    } else if (token.starts_with("return") {
+        
+        return KEYWORD;
     }
+
+    
     return UNKNOWN;
 }
 
