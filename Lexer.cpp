@@ -110,7 +110,7 @@ if(filename.ends_with(".cpps")){
 
     std::ofstream output_file(outfile);
     if (!output_file.is_open()) {
-        std::cerr << "Error: Could not open output file: " << strerror(errno) << std::endl;
+        std::cerr << "Error: Could not open output file: " << outfile << std::endl;
         return 1;
     }
 
