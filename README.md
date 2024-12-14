@@ -3,7 +3,6 @@
 <img src="https://github.com/Harsha-Bhattacharyya/CppScript/blob/Master/logo.png"/>
 
 <img alt="License" src="https://img.shields.io/github/license/lunarvim/lunarvim?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
-
   [![Build with Clang](https://github.com/Harsha-Bhattacharyya/CppScript/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/Harsha-Bhattacharyya/CppScript/actions/workflows/c-cpp.yml)
   
 Cppscript is a powerful, high-performance language designed to provide a C++-like experience, while seamlessly compiling into optimized JavaScript code.
